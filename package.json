@@ -1,0 +1,23 @@
+{
+  "name": "mv-modal",
+  "version": "1.0.0",
+  "description": "MEVEO modal component",
+  "main": "mv-modal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meveo-org/mv-modal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meveo-org/mv-modal/issues"
+  },
+  "homepage": "https://github.com/meveo-org/mv-modal#readme",
+  "dependencies": {
+    "@meveo-org/mv-button": "^1.0.0",
+    "@meveo-org/mv-font-awesome": "^1.0.0"
+  }
+}
