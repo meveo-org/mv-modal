@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import './mv-modal.js';
+import { LitElement, html, css } from "lit";
+import '../mv-modal.js';
 import "@meveo-org/mv-button";
 import "@meveo-org/mv-font-awesome";
 
@@ -180,7 +180,6 @@ export class MvModalDemo extends LitElement {
             <mv-modal
                 ?open="${this.isOpen3}"
                 @close-modal="${this.closeModal3}"
-                closeable
                 .theme="${theme}"
             >
                 <div slot="header">

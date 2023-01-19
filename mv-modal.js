@@ -6,8 +6,6 @@ export class MvModal extends LitElement {
     static get properties() {
         return {
             open: { type: Boolean, reflect: true },
-            closeable: { type: Boolean, reflect: true },
-            noFooter: { type: Boolean, attribute: "no-footer", reflect: true },
             //  valid theme values are: "light", "dark"
             //    default: "light"
             theme: { type: String, attribute: true },
@@ -225,7 +223,6 @@ export class MvModal extends LitElement {
     constructor() {
         super();
         this.open = false;
-        this.closeable = true;
         this.theme = "light";
         this.isSlotted = false;
     }

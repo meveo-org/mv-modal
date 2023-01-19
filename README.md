@@ -9,6 +9,20 @@ Display modal with 4 slots :
     * body
     * footer
 
+## Dependencies
+* [mv-button](https://github.com/meveo-org/mv-button)
+* [mv-font-awesome](https://github.com/meveo-org/mv-font-awesome)
+
+## Quick Start
+
+To experiment with the MvModal component.
+
+1. Clone this repo.
+2. Serve the project from the root directory with some http server (best served with meveo itself) 
+3. Update the table in the demo.js file
+
+You can also check this [demo](https://modal.meveo.org/index.html)
+
 ## Sample usage
 ```html
 <mv-modal
