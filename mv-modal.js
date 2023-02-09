@@ -5,7 +5,7 @@ import "@meveo-org/mv-font-awesome";
 export class MvModal extends LitElement {
     static get properties() {
         return {
-            open: { type: Boolean, reflect: true },
+            open: { type: Boolean },
             //  valid theme values are: "light", "dark"
             //    default: "light"
             theme: { type: String, attribute: true },
@@ -20,15 +20,15 @@ export class MvModal extends LitElement {
             --mv-modal-close-icon-font-size: 11px;
             --light-color: var(--mv-modal-color, #02657E);
             --dark-color: var(--mv-modal-dark-color, #02657E);
-            --modal-z-index: var(--mv-modal-z-index, 99);
+            --modal-z-index: 9999;
             /**
             ** Modal container
             */
             --light-background: var(--mv-modal-background-color, linear-gradient(359.71deg, #AFCCD2 0.51%, #D4EBF0 99.89%));
             --dark-background: var(--mv-modal-dark-background, linear-gradient(359.71deg, #AFCCD2 0.51%, #D4EBF0 99.89%));
-            --width: var(--mv-modal-width, 360px);
-            --modal-height: var(--mv-modal-height, 230px);
-            --max-height: var(--mv-modal-max-height, 230px);
+            --width: var(--mv-modal-width, 28vw);
+            --modal-height: var(--mv-modal-height, 18vw);
+            --max-height: var(--mv-modal-max-height, 18vw);
             --modal-box-shadow: var(--mv-modal-box-shadow, 10.57px 16.07px 20.93px -1.11px rgba(71, 57, 154, 0.3));
             --border-radius: var(--mv-modal-border-radius, 10px);
             --mv-modal-content-font-size: var(--font-size-m, 10pt);
@@ -45,7 +45,7 @@ export class MvModal extends LitElement {
             /**
             ** Modal body
             */
-            --modal-body-width: var(--mv-modal-content-width, 315px);
+            --modal-body-width: var(--mv-modal-content-width, 24.015vw);
             --modal-body-height-not-slotted: calc(var(--max-height) - 49px);
             --modal-body-height-slotted: calc(var(--max-height) - 62px);
             --body-border-radius: var(--mv-modal-border-radius, 10px);
@@ -54,7 +54,7 @@ export class MvModal extends LitElement {
             /**
             ** Modal section
             */
-            --modal-section-width: var(--mv-modal-section-width, 35px);
+            --modal-section-width: var(--mv-modal-section-width, 2.73vw);
             --modal-section-height: var(--mv-modal-section-height, calc(var(--max-height)- 36px));
 
             /**
@@ -111,7 +111,6 @@ export class MvModal extends LitElement {
         .body {
             overflow-y: inherit;
             width: var(--modal-body-width);
-            //height: var(--modal-body-height);
             background: var(--body-background);
             border-radius: var(--body-border-radius) var(--body-border-radius) var(--body-border-radius) var(--body-border-radius);
             box-sizing: border-box;
@@ -133,7 +132,6 @@ export class MvModal extends LitElement {
         .footer {
             width: var(--width);
             min-height: var(--footer-min-height);
-            //height: var(--footer-height, 7px);
             background: var(--footer-background);
             box-shadow: var(--footer-box-shadow);
             border-radius: 0 0 var(--border-radius) var(--border-radius);
@@ -151,7 +149,7 @@ export class MvModal extends LitElement {
             height: 0px;
             display: inline-block;
             border: 1px solid #FFFFFF;
-            width: calc(var(--modal-body-width) - 35px);
+            width: calc(var(--modal-body-width) - 0.3vw);
             vertical-align: bottom;
             position: absolute;
             right: 25px;
@@ -230,7 +228,8 @@ export class MvModal extends LitElement {
     render() {
         let footerSlot = this.shadowRoot.querySelector('#footer')
         if(footerSlot){
-        footerSlot.assignedNodes().length > 0 ? this.isSlotted = true : this.isSlotted = false}
+            footerSlot.assignedNodes().length > 0 ? this.isSlotted = true : this.isSlotted = false
+        }
         const modalClass = this.open ? "opened" : "closed";
         return html`
             <div class="mv-container-modal ${modalClass} ${this.theme}">
