@@ -1,6 +1,4 @@
 import { LitElement, html, css } from "lit";
-import "@meveo-org/mv-button";
-import "@meveo-org/mv-font-awesome";
 
 export class MvModal extends LitElement {
     static get properties() {
@@ -110,17 +108,21 @@ export class MvModal extends LitElement {
         }
         .body {
             overflow-y: inherit;
-            width: var(--modal-body-width);
+            width: auto;
+            //width: var(--modal-body-width);
             background: var(--body-background);
             border-radius: var(--body-border-radius) var(--body-border-radius) var(--body-border-radius) var(--body-border-radius);
             box-sizing: border-box;
         }
 
+        //to do : slotted not-slotted don't work
         .body.slotted {
-            height: var(--modal-body-height-slotted)
+            height: var(--modal-body-height-slotted);
+            width: auto;
         }
         .body:not(.slotted) {
-            height: var(--modal-body-height-not-slotted)
+            height: var(--modal-body-height-not-slotted);
+            width: auto;
         }
 
         .section {
