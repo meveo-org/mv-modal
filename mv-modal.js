@@ -1,4 +1,6 @@
 import { LitElement, html, css } from "lit";
+import "@meveo-org/mv-button";
+import "@meveo-org/mv-font-awesome";
 
 export class MvModal extends LitElement {
     static get properties() {
@@ -108,21 +110,17 @@ export class MvModal extends LitElement {
         }
         .body {
             overflow-y: inherit;
-            width: auto;
-            //width: var(--modal-body-width);
+            width: var(--modal-body-width);
             background: var(--body-background);
             border-radius: var(--body-border-radius) var(--body-border-radius) var(--body-border-radius) var(--body-border-radius);
             box-sizing: border-box;
         }
 
-        //to do : slotted not-slotted don't work
         .body.slotted {
-            height: var(--modal-body-height-slotted);
-            width: auto;
+            height: var(--modal-body-height-slotted)
         }
         .body:not(.slotted) {
-            height: var(--modal-body-height-not-slotted);
-            width: auto;
+            height: var(--modal-body-height-not-slotted)
         }
 
         .section {
@@ -234,29 +232,31 @@ export class MvModal extends LitElement {
         }
         const modalClass = this.open ? "opened" : "closed";
         return html`
-            <div class="mv-container-modal ${modalClass} ${this.theme}">
-                <div class="overlay-modal" @click="${this.handleClose}"></div>
-                <div class="modal">
-                    <div class="header">
-                        <div class="header_container">
-                            <slot id="header" name="header"></slot>
-                            <mv-fa icon="times" @click="${this.handleClose}"></mv-fa>
+            <mv-click-away @clicked-away="${this.handleClose}">
+                <div class="mv-container-modal ${modalClass} ${this.theme}">
+                    <div class="overlay-modal" @click="${this.handleClose}"></div>
+                    <div class="modal">
+                        <div class="header">
+                            <div class="header_container">
+                                <slot id="header" name="header"></slot>
+                                <mv-fa icon="times" @click="${this.handleClose}"></mv-fa>
+                            </div>
+                            <span class="separator"> </span>
                         </div>
-                        <span class="separator"> </span>
-                    </div>
-                    <div class="section">
-                        <slot name="section"></slot>
-                    </div>
-                    <div class="body ${this.isSlotted ? "slotted" : ""}">
-                        <slot name="body"></slot>
-                    </div>
-                    <div class="footer ${this.isSlotted ? "slotted" : ""}">
-                        <slot id="footer" name="footer">
-                            <div style="height: 7px"></div>
-                        </slot>
+                        <div class="section">
+                            <slot name="section"></slot>
+                        </div>
+                        <div class="body ${this.isSlotted ? "slotted" : ""}">
+                            <slot name="body"></slot>
+                        </div>
+                        <div class="footer ${this.isSlotted ? "slotted" : ""}">
+                            <slot id="footer" name="footer">
+                                <div style="height: 7px"></div>
+                            </slot>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </mv-click-away>
     `;
     }
 
