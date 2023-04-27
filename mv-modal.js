@@ -5,7 +5,7 @@ import "@meveo-org/mv-font-awesome";
 export class MvModal extends LitElement {
     static get properties() {
         return {
-            open: { type: Boolean },
+            open: { type: Boolean, reflect: true },
             //  valid theme values are: "light", "dark"
             //    default: "light"
             theme: { type: String, attribute: true },
@@ -225,6 +225,16 @@ export class MvModal extends LitElement {
         this.isSlotted = false;
     }
 
+    updated() {
+        super.updated();
+        const mvClickAway = document.querySelector("mv-click-away");
+        if (this.open) {
+            mvClickAway.addEventListener("clicked-away", this.handleClose);
+        } else {
+            mvClickAway.removeEventListener("clicked-away", this.handleClose);
+        }
+    }
+
     render() {
         let footerSlot = this.shadowRoot.querySelector('#footer')
         if(footerSlot){
@@ -232,7 +242,7 @@ export class MvModal extends LitElement {
         }
         const modalClass = this.open ? "opened" : "closed";
         return html`
-            <mv-click-away @clicked-away="${this.handleClose}">
+            <mv-click-away>
                 <div class="mv-container-modal ${modalClass} ${this.theme}">
                     <div class="overlay-modal" @click="${this.handleClose}"></div>
                     <div class="modal">
@@ -261,8 +271,10 @@ export class MvModal extends LitElement {
     }
 
     handleClose(event) {
-        event && event.stopImmediatePropagation();
-        this.dispatchEvent(new CustomEvent("close-modal"));
+        if (this.open) {
+            event && event.stopImmediatePropagation();
+            this.dispatchEvent(new CustomEvent("close-modal"));
+        }
     }
 
 }
