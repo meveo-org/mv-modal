@@ -228,10 +228,12 @@ export class MvModal extends LitElement {
     updated() {
         super.updated();
         const mvClickAway = document.querySelector("mv-click-away");
-        if (this.open) {
-            mvClickAway.addEventListener("clicked-away", this.handleClose);
-        } else {
-            mvClickAway.removeEventListener("clicked-away", this.handleClose);
+        if (mvClickAway != null) {
+            if (this.open) {
+                mvClickAway.addEventListener("clicked-away", this.handleClose);
+            } else {
+                mvClickAway.removeEventListener("clicked-away", this.handleClose);
+            }
         }
     }
 
